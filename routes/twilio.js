@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.all("/voice", (req, res) => {
 
-  console.log("Incoming Twilio call");
+  console.log("Twilio request received");
 
   res.set("Content-Type", "text/xml");
 
