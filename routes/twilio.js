@@ -9,8 +9,10 @@
 // });
 
 // export default router;
-
 import express from "express";
+import { askGemma } from "../services/gemmaService.js";
+
+const router = express.Router();
 
 router.post("/voice", async (req, res) => {
 
@@ -37,7 +39,8 @@ router.post("/process-speech", async (req, res) => {
 
   try {
 
-    const userSpeech = req.body.SpeechResult || "I could not hear anything";
+    const userSpeech =
+      req.body.SpeechResult || "I could not hear anything";
 
     console.log("Caller:", userSpeech);
 
@@ -65,12 +68,12 @@ router.post("/process-speech", async (req, res) => {
 
   } catch (error) {
 
-    console.log(error.message);
+    console.log(error);
 
     const errorXml = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Say>
-        Sorry. Something went wrong.
+    <Say voice="alice">
+        Sorry, something went wrong.
     </Say>
 </Response>`;
 
